@@ -30,6 +30,7 @@ y = 250
 laius_uss = 30
 kõrgus_uss = 30
 vel = 10
+proov = 0
 
 tõeväärtus = True
 while tõeväärtus:
@@ -55,8 +56,14 @@ while tõeväärtus:
     #Äärde liikumine ja mäng läbi pilt
     if (keys [pygame.K_DOWN] or [pygame.K_UP] or [pygame.K_LEFT]or [pygame.K_RIGHT])and ( x == vel or x == (laius - laius_uss - vel) or y == vel or y == (laius - laius_uss - vel)):
         #Mäng läbi pildi asukoht ja kuvamine
-        aken.blit(mäng_läbi, (250-(round(pildi_laius*0.35/2)),250-(round(pildi_kõrgus*0.35/2))))
-        pygame.display.update()
+        proov = 1
+        
+    #ENDSCREEN   
+    if proov == 1:
+        lõpp = pygame.display.set_mode((laius,kõrgus))
+        pygame.display.set_caption("Läbi")
+        lõpp.blit(mäng_läbi, (250-(round(pildi_laius*0.35/2)),250-(round(pildi_kõrgus*0.35/2))))
+        
         
     #Ristküliku joonistamine
     pygame.draw.rect(aken, (199,0,157), (x, y, laius_uss, kõrgus_uss))

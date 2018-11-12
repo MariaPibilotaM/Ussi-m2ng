@@ -59,7 +59,7 @@ while tõeväärtus:
             highscore = skoor
         x1 = randrange(border+raadius, laius-border-raadius, 25)
         y1 = randrange(border+raadius, kõrgus-border-raadius, 25)
-        keha.insert(0, (x, y, laius_uss, kõrgus_uss))#Sisestame uued kordinaadid kehale
+        keha.append((x, y, laius_uss, kõrgus_uss))#Sisestame uued kordinaadid kehale
     
     #Ussi tagumisest otsast hakkavad kordinaadid ennemaks muutuma, ehk et viimane taguots muutub ruuduks, mis ta ees oli enne jne, kuni selleni mis enne pead on
     for i in range(len(keha)-1, 0, -1):

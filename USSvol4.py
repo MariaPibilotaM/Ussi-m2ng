@@ -17,10 +17,10 @@ pygame.display.set_caption("Ussimäng!")
 aken.fill((153, 255, 51)) #Värv
 
 #Mäng läbi pilt
-mäng_läbi = pygame.image.load("game-over.png")
-pildi_laius = 528
-pildi_kõrgus = 528
-mäng_läbi = pygame.transform.scale(mäng_läbi, (round(pildi_laius * 0.35),round(pildi_kõrgus * 0.35)))
+mäng_läbi = pygame.image.load("uus_lopp.png")
+pildi_laius = 736
+pildi_kõrgus = 735
+mäng_läbi = pygame.transform.scale(mäng_läbi, (round(pildi_laius * 0.6),round(pildi_kõrgus * 0.6)))
 
 #Kasutajale akna näitamine
 pygame.display.flip()
@@ -64,12 +64,12 @@ while tõeväärtus:
     #Ussi tagumisest otsast hakkavad kordinaadid ennemaks muutuma, ehk et viimane taguots muutub ruuduks, mis ta ees oli enne jne, kuni selleni mis enne pead on
     for i in range(len(keha)-1, 0, -1):
         keha[i] = keha[i-1]
-        pygame.draw.rect(aken, (220,50,170), (keha[i]))
+        pygame.draw.rect(aken, (255,204,204), (keha[i]))
         
     #Enne pead ruut liigub pea kohale, sest järgnevalt liigub pea edasi
     if len(keha) > 0:
         keha[0] = (x, y, laius_uss, kõrgus_uss)
-        pygame.draw.rect(aken, (220,50,170), (keha[0]))
+        pygame.draw.rect(aken, (255,204,204), (keha[0]))
         
     #Liikumine ja bordertest mitte välja liikumine  
     keys = pygame.key.get_pressed()
@@ -102,11 +102,11 @@ while tõeväärtus:
         if highscore <= alghighscore:
             pygame.display.set_caption("Läbi! Parim skoor jäi muutumata! Mängu skoor: " + str(skoor) + " Parim skoor: " + str(highscore))
         
-        aken.blit(mäng_läbi, (250-(round(pildi_laius*0.35/2)),250-(round(pildi_kõrgus*0.35/2))))
+        aken.blit(mäng_läbi, (39,40))
            
-    pygame.draw.rect(aken, (199,0,157), (x, y, laius_uss, kõrgus_uss))
+    pygame.draw.rect(aken, (252,166,166), (x, y, laius_uss, kõrgus_uss))
     if surm == 0:
-        pygame.draw.circle(aken, (255, 0, 0), (x1, y1), raadius)
+        pygame.draw.circle(aken, (248, 255, 1), (x1, y1), raadius)
         pygame.display.set_caption("Ussimäng! Skoor: " + str(skoor) + " Parim skoor: " + str(highscore))
     pygame.display.update()
     aken.fill((153, 255, 51))

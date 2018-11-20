@@ -36,6 +36,13 @@ x_muutus = 25
 y_muutus = 0
 keha = []
 
+#Kana
+kõrgus_kana= 40
+laius_kana= 40
+x_kana= 25
+y_kana= 25
+x_kana_muutus = 25
+y_kana_muutus = 0
 
 #Toit
 raadius = 10
@@ -89,6 +96,25 @@ while tõeväärtus:
     x = x + x_muutus
     y = y + y_muutus
 
+    #Kana liikumine
+    keys_kana = pygame.key.get_pressed()
+    if keys_kana [pygame.K_a]and x_kana > border and x_kana_muutus != 25:
+        x_kana_muutus = -25
+        y_kana_muutus = 0
+    elif keys_kana [pygame.K_d]and x_kana < (laius - laius_kana - border) and x_kana_muutus != -25:
+        x_kana_muutus = 25
+        y_kana_muutus = 0
+    elif keys_kana [pygame.K_w] and y_kana > border and y_kana_muutus != 25:
+        y_kana_muutus = -25
+        x_kana_muutus = 0
+    elif keys_kana [pygame.K_s] and y_kana < (kõrgus - laius_kana - border) and y_kana_muutus != -25:
+        y_kana_muutus = 25
+        x_kana_muutus = 0
+    x_kana = x_kana + x_kana_muutus
+    y_kana = y_kana + y_kana_muutus
+
+
+
     
     #Seina kokkupõrge või uued x ja y kordinaadid on juba keha kordinaadi. Mäng läbi
     if x < border or x > (laius - laius_uss - border) or y < border or y > (laius - laius_uss - border) or (x, y, laius_uss, kõrgus_uss) in keha:
@@ -97,7 +123,12 @@ while tõeväärtus:
         y_muutus = 0
         f = open("highscore.txt", "w")
         f.write(str(highscore))
-
+    if x_kana < border or x_kana > (laius - laius_kana - border) or y_kana < border or y_kana > (laius - laius_kana - border):
+        surm = 1
+        x_kana_muutus = 0
+        y_kana_muutus = 0
+        f = open("highscore.txt", "w")
+        f.write(str(highscore))
     if surm == 1:
         lõpp = pygame.display.set_mode((laius,kõrgus))
         if highscore > alghighscore: #Kontrollime kas saavutati uus highscore ja väljastame vastava sõnumi
@@ -108,6 +139,7 @@ while tõeväärtus:
         aken.blit(mäng_läbi, (39,40))
            
     pygame.draw.rect(aken, (252,166,166), (x, y, laius_uss, kõrgus_uss))
+    pygame.draw.rect(aken,(200,200,200),(x_kana, y_kana, laius_kana, kõrgus_kana))
     if surm == 0:
         pygame.draw.circle(aken, (248, 255, 1), (x1, y1), raadius)
         pygame.display.set_caption("Ussimäng! Skoor: " + str(skoor) + " Parim skoor: " + str(highscore))

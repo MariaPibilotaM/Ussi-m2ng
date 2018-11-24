@@ -46,7 +46,7 @@ y_kana_muutus = 0
 kana_keha = []
 kanasurm = 0
 usssurm = 0
-
+skoor_uss = 0
 #Toit
 raadius = 10
 x1 = randrange(border+raadius, laius-border-raadius, 25)

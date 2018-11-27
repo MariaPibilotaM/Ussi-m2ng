@@ -138,7 +138,7 @@ while tõeväärtus:
     elif keys [pygame.K_DOWN] and y < (kõrgus - laius_uss - border) and y_muutus != -25 and surm == 0 and (menüü == 1 or menüü == 2):
         y_muutus = 25
         x_muutus = 0
-    if menüü == 2 or menüü == 1:
+    if surm == 0 and (menüü == 2 or menüü == 1):
         x = x + x_muutus
         y = y + y_muutus
 
@@ -156,7 +156,7 @@ while tõeväärtus:
     elif keys_kana [pygame.K_s] and y_kana < (kõrgus - laius_kana - border) and y_kana_muutus != -25 and surm == 0 and menüü == 2:
         y_kana_muutus = 25
         x_kana_muutus = 0
-    if menüü == 2:
+    if menüü == 2 and surm == 0:
         x_kana = x_kana + x_kana_muutus
         y_kana = y_kana + y_kana_muutus
     
@@ -193,23 +193,29 @@ while tõeväärtus:
             pygame.display.set_caption("Ussimäng! Skoor: " + str(skoor_uss) + " Parim skoor: " + str(highscore))
 	            
     #Mäng läbi ja surm  
-    if kanasurm == 1 or usssurm == 1:
+    if kanasurm == 1 or usssurm == 1 and menüü != 0:
         surm = 1  
     if surm == 1:
         restart = pygame.key.get_pressed()
         if restart [pygame.K_r]:
             menüü = 0
             surm = 0
+            kanasurm = 0
+            usssurm = 0
+
             aken = pygame.display.set_mode((laius,kõrgus))
             
         x = 35
         y = 35
         x_kana = 35
         y_kana = 460
-        x_kana_muutus = 0
+        x_kana_muutus = 25
         y_kana_muutus = 0
-        x_muutus = 0
+        x_muutus = 25
         y_muutus = 0
+        keha = []
+        kana_keha = []
+        skoor_uss = 0
         lõpp = pygame.display.set_mode((laius,kõrgus))
         if menüü == 2:
             if usssurm > kanasurm: #Kontrollime kas saavutati uus highscore ja väljastame vastava sõnumi

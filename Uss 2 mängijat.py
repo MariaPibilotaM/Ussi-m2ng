@@ -12,9 +12,10 @@ alghighscore = highscore
 pygame.init()
 laius = 520 #Suurused
 kõrgus = 520
+taust = pygame.image.load("taust.bmp")
 aken = pygame.display.set_mode((laius,kõrgus)) #Akna pinna tegemine
 pygame.display.set_caption("Ussimäng!")
-aken.fill((153, 255, 51)) #Värv
+aken.blit(taust, [0,0]) #Värv
 
 #Mäng läbi pilt
 mäng_läbi_uss_pilt = pygame.image.load("Lõpp_uss.PNG")
@@ -75,7 +76,9 @@ while tõeväärtus:
             tõeväärtus = False
     
     if menüü == 0:
-        aken.blit(algus_pilt, (39,40))
+        pygame.display.flip()
+        aken.blit(taust, [0,0])
+        aken.blit(algus, (39,40))
         valik = pygame.key.get_pressed()
         if valik [pygame.K_2]:
             menüü = 2
@@ -232,7 +235,7 @@ while tõeväärtus:
         
     pygame.display.update()
     if (menüü == 1 or menüü == 2) and surm == 0:
-        aken.fill((153, 255, 51))
+        aken.blit(taust, [0,0])
     time.sleep (100.0 / 1000.0)
 
 pygame.quit()

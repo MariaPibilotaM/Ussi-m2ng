@@ -1,0 +1,20 @@
+KUIDAS MÄNGIDA?
+
+1.Mängu käivitamine
+
+2.Mängijate arvu valimine:
+* Vajuta klaviatuuril klahvi "1", kui soovid mängida üksinda
+* Vajuta klaviatuuril klahvi "2", kui soovid mängida kahekesi
+
+3.Karakteri liigutamine
+*Ussi juhtimiseks kasuta vastavalt klahve ? ? ? ?
+*Kana juhtimiseks kasuta vastavalt klahve A W D S
+
+
+KUIDAS SELGUB VÕITJA?
+
+1. Üksikmängija
+*Mängija peab võimalikult palju punkte koguma ja seejuures vältima piirdeid ning enda saba
+
+2. Kahemängijaga
+*Mängijad peavad võimalikult palju punkte koguma, samuti peab vältima piirdeid, enda saba ja teist mängijat

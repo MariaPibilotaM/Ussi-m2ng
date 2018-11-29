@@ -67,7 +67,7 @@ tõeväärtus = True
 
 tõeväärtus = True
 while tõeväärtus:
-    pygame.display.update()
+    #pygame.display.update()
     pygame.time.delay(20)
     for event in pygame.event.get():
         

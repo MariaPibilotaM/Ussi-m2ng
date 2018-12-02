@@ -65,9 +65,7 @@ y1 = randrange(border+raadius, kõrgus-border-raadius, 25)
 menüü = 0
 tõeväärtus = True
 
-tõeväärtus = True
 while tõeväärtus:
-    #pygame.display.update()
     pygame.time.delay(20)
     for event in pygame.event.get():
         
@@ -113,7 +111,7 @@ while tõeväärtus:
     if menüü == 2:
         for j in range(len(kana_keha)-1, 0, -1):
             kana_keha[j] = kana_keha[j-1]
-            pygame.draw.rect(aken, (200,200,200), (kana_keha[i]))
+            pygame.draw.rect(aken, (200,200,200), (kana_keha[j]))
     #Enne pead ruut liigub pea kohale, sest järgnevalt liigub pea edasi
     if len(keha) > 0 and (menüü == 1 or menüü == 2):
         keha[0] = (x, y, laius_uss, kõrgus_uss)

@@ -10,25 +10,30 @@ except:
 alghighscore = highscore
 
 pygame.init()
-laius = 520 #Suurused
+#Ekraani suurused
+laius = 520 
 kõrgus = 520
+#Tausta lisamine
 taust = pygame.image.load("taust.bmp")
-aken = pygame.display.set_mode((laius,kõrgus)) #Akna pinna tegemine
+#Akna pinna tegemine
+aken = pygame.display.set_mode((laius,kõrgus))
+#Akna nimetuse panemine
 pygame.display.set_caption("Ussimäng!")
-aken.blit(taust, [0,0]) #Värv
+aken.blit(taust, [0,0]) 
 
-#Mäng läbi pilt
+#Mängu lõpu pildid
+#Üksikmängija või ussi võt
 mäng_läbi_uss_pilt = pygame.image.load("Lõpp_uss.PNG")
 pildi_laius = 736
 pildi_kõrgus = 738
 mäng_läbi_uss = pygame.transform.scale(mäng_läbi_uss_pilt, (round(pildi_laius * 0.6),round(pildi_kõrgus * 0.6)))
-
+#Kana võit
 mäng_läbi_kana_pilt = pygame.image.load("Lõpp_kana.PNG")
 mäng_läbi_kana = pygame.transform.scale(mäng_läbi_kana_pilt, (round(pildi_laius * 0.6),round(pildi_kõrgus * 0.6)))
-
+#Viigiga
 mäng_läbi_viik_pilt = pygame.image.load("Lõpp_viik.PNG")
 mäng_läbi_viik = pygame.transform.scale(mäng_läbi_viik_pilt, (round(pildi_laius * 0.6),round(pildi_kõrgus * 0.6)))
-
+#Alguse pilt
 algus_pilt = pygame.image.load("algus.PNG")
 algus = pygame.transform.scale(algus_pilt, (round(pildi_laius * 0.6),round(pildi_kõrgus * 0.6)))
 
@@ -46,7 +51,7 @@ x_muutus = 25
 y_muutus = 0
 keha = []
 
-#kana
+#Kana
 kõrgus_kana= 25
 laius_kana= 25
 x_kana= 35
@@ -57,6 +62,7 @@ kana_keha = []
 kanasurm = 0
 usssurm = 0
 skoor_uss = 0
+
 #Toit
 raadius = 10
 x1 = randrange(border+raadius, laius-border-raadius, 25)
@@ -65,6 +71,7 @@ y1 = randrange(border+raadius, kõrgus-border-raadius, 25)
 menüü = 0
 tõeväärtus = True
 
+#Mängu tsükkel
 tõeväärtus = True
 while tõeväärtus:
     pygame.display.update()
@@ -74,7 +81,7 @@ while tõeväärtus:
         #Kui kasutaja paneb aknast kinni
         if event.type == pygame.QUIT:
             tõeväärtus = False
-    
+    #Alguse menüü ning mängijate valimine
     if menüü == 0:
         pygame.display.flip()
         aken.blit(taust, [0,0])
@@ -109,22 +116,24 @@ while tõeväärtus:
         for i in range(len(keha)-1, 0, -1):
             keha[i] = keha[i-1]
             pygame.draw.rect(aken, (255,204,204), (keha[i]))
-    #kana tagumine ots muutub
+            
+    #Kana tagumine ots muutub
     if menüü == 2:
         for j in range(len(kana_keha)-1, 0, -1):
             kana_keha[j] = kana_keha[j-1]
             pygame.draw.rect(aken, (200,200,200), (kana_keha[i]))
+            
     #Enne pead ruut liigub pea kohale, sest järgnevalt liigub pea edasi
     if len(keha) > 0 and (menüü == 1 or menüü == 2):
         keha[0] = (x, y, laius_uss, kõrgus_uss)
         pygame.draw.rect(aken, (255,204,204), (keha[0]))
         
-    #kana pea edasi liikumine
+    #Kana pea edasi liikumine
     if len(kana_keha) > 0 and menüü == 2:
         kana_keha[0] = (x_kana, y_kana, laius_kana, kõrgus_kana)
         pygame.draw.rect(aken, (200,200,200), (kana_keha[0]))
         
-    #Liikumine ja bordertest mitte välja liikumine  
+    #Liikumine ja bordertest kinni pidamine  
     keys = pygame.key.get_pressed()
     if keys [pygame.K_LEFT]and x > border and x_muutus != 25 and surm == 0 and (menüü == 1 or menüü == 2):
         x_muutus = -25
@@ -142,7 +151,7 @@ while tõeväärtus:
         x = x + x_muutus
         y = y + y_muutus
 
-    #kana liikumine
+    #Kana liikumine
     keys_kana = pygame.key.get_pressed()
     if keys_kana [pygame.K_a]and x_kana > border and x_kana_muutus != 25 and surm == 0 and menüü == 2:
         x_kana_muutus = -25
@@ -160,7 +169,7 @@ while tõeväärtus:
         x_kana = x_kana + x_kana_muutus
         y_kana = y_kana + y_kana_muutus
     
-    #Kehasse sõitmine
+    #Kehasse sõitmine kahemängijas
     if menüü == 2:
         for osa in kana_keha:
             dist = sqrt((x+(laius_uss / 2)-(osa[0]+(laius_kana / 2)))*(x+(laius_uss / 2)-(osa[0]+(laius_kana / 2))) + (y+(kõrgus_uss / 2)-(osa[1] +(kõrgus_kana / 2)))*(y+(kõrgus_uss / 2)-(osa[1] +(kõrgus_kana / 2))))
@@ -182,7 +191,7 @@ while tõeväärtus:
     if dist_pead <= 12.5 and surm == 0 and ((x_muutus == -x_kana_muutus != 0 and y == y_kana) or (y_muutus == -y_kana_muutus != 0 and x == x_kana)) and menüü == 2:
         kanasurm = 1
         usssurm = 1
-        
+    #Toidu lisamine   
     if surm == 0 and menüü > 0:
         pygame.draw.circle(aken, (248, 255, 1), (x1, y1), raadius)
         pygame.draw.rect(aken, (252,166,166), (x, y, laius_uss, kõrgus_uss))
@@ -204,7 +213,7 @@ while tõeväärtus:
             usssurm = 0
 
             aken = pygame.display.set_mode((laius,kõrgus))
-            
+        #Andmete taastamine    
         x = 35
         y = 35
         x_kana = 35

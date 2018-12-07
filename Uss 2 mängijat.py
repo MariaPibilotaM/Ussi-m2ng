@@ -71,10 +71,12 @@ y1 = randrange(border+raadius, kõrgus-border-raadius, 25)
 menüü = 0
 tõeväärtus = True
 
+<<<<<<< HEAD
 #Mängu tsükkel
 tõeväärtus = True
+=======
+>>>>>>> b447a8cb4ad993a324360bd0bf99f1424679e27d
 while tõeväärtus:
-    pygame.display.update()
     pygame.time.delay(20)
     for event in pygame.event.get():
         
@@ -121,8 +123,12 @@ while tõeväärtus:
     if menüü == 2:
         for j in range(len(kana_keha)-1, 0, -1):
             kana_keha[j] = kana_keha[j-1]
+<<<<<<< HEAD
             pygame.draw.rect(aken, (200,200,200), (kana_keha[i]))
             
+=======
+            pygame.draw.rect(aken, (200,200,200), (kana_keha[j]))
+>>>>>>> b447a8cb4ad993a324360bd0bf99f1424679e27d
     #Enne pead ruut liigub pea kohale, sest järgnevalt liigub pea edasi
     if len(keha) > 0 and (menüü == 1 or menüü == 2):
         keha[0] = (x, y, laius_uss, kõrgus_uss)
